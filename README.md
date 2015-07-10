@@ -91,7 +91,7 @@ And update routes:
 
 ```ruby
 devise_scope :user do
-  post 'auth/facebook', to: 'devise_ios_rails/oauth#facebook'
+  post 'users/auth/facebook', to: 'devise_ios_rails/oauth#facebook'
 end
 ```
 
