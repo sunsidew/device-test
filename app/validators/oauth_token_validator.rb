@@ -9,7 +9,10 @@ class OauthTokenValidator < ActiveModel::Validator
 
   def validate_facebook_token(record)
     graph = Koala::Facebook::API.new record.oauth_token
-    graph.get_object 'me'
+    userinfo = graph.get_object 'me'
+    if userinfo['id'] != record.uid
+      record.errors.add :uid, 'your uid is not identical with uid_from_token'
+    end
   rescue Koala::Facebook::AuthenticationError => e
     record.errors.add :oauth_token, e.fb_error_message
   end
@@ -20,6 +23,8 @@ class OauthTokenValidator < ActiveModel::Validator
     if resp.status == 400
       error_description = JSON.parse(resp.body)['error_description']
       record.errors.add :oauth_token, error_description
+    elsif JSON.parse(resp.body)['user_id'] != record.uid
+      record.errors.add :uid, 'your uid is not identical with uid_from_token'
     end
   end
 end
