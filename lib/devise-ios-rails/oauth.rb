@@ -19,6 +19,9 @@ module DeviseIosRails
       def from_oauth attributes
         where(attributes.slice(:uid, :provider)).first_or_create do |user|
           user.email = attributes[:email]
+          user.nickname = attributes[:nickname]
+          user.gender = attributes[:gender]
+          user.birthyear = attributes[:birthyear]
           user.oauth_email = attributes[:email]
           user.provider    = attributes[:provider]
           user.uid         = attributes[:uid]
