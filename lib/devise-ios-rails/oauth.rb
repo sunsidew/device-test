@@ -22,6 +22,7 @@ module DeviseIosRails
           user.nickname = attributes[:nickname]
           user.gender = attributes[:gender]
           user.birthyear = attributes[:birthyear]
+          user.thumbimg = attributes[:thumbimg]
           user.oauth_email = attributes[:email]
           user.provider    = attributes[:provider]
           user.uid         = attributes[:uid]
