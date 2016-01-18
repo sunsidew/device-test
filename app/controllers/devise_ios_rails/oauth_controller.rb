@@ -5,7 +5,9 @@ module DeviseIosRails
     respond_to :json
 
     def all
-      respond_with resource_class.from_oauth(resource_params)
+      if resource_params[:uid] && resource_params[:oauth_token]
+        respond_with resource_class.from_oauth(resource_params)
+      end
     end
 
     alias_method :facebook, :all
