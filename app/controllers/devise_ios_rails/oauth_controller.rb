@@ -5,7 +5,7 @@ module DeviseIosRails
     respond_to :json
 
     def all
-      if resource_params[:uid] && resource_params[:oauth_token]
+      if resource_params[:uid]
         respond_with resource_class.from_oauth(resource_params)
       end
     end
