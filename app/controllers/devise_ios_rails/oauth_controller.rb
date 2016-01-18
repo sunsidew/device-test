@@ -5,8 +5,11 @@ module DeviseIosRails
     respond_to :json
 
     def all
-      if resource_params[:uid]
+      if resource_params[:uid] && resource_params[:oauth_token]
         respond_with resource_class.from_oauth(resource_params)
+      else
+        record.errors.add :uid, 'Uid must be filled in.' unless resource_params[:uid]
+        record.errors.add :oauth_token, 'Oauth token must be filled in.' unless resource_params[:oauth_token]
       end
     end
 
