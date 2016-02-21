@@ -5,20 +5,24 @@ module DeviseIosRails
     respond_to :json
 
     def all
+      puts "1"
       if resource_params[:uid] && resource_params[:oauth_token]
+        puts "2"
         record = User.new
         record.uid = resource_params[:uid]
         record.oauth_token = resource_params[:oauth_token]
-
+        puts "3"
         before_check_facebook_token(record)
         record = resource_class.from_oauth(resource_params) if record.errors.blank?
         respond_with record
       else
+        puts "4"
         record = User.new
         record.errors.add :uid, 'Uid must be filled in.' unless resource_params[:uid]
         record.errors.add :oauth_token, 'Oauth token must be filled in.' unless resource_params[:oauth_token]
         respond_with record
       end
+      puts "5"
     end
 
     def before_check_facebook_token(record)
@@ -37,7 +41,7 @@ module DeviseIosRails
     private
 
     def resource_params
-      params.require(resource_name).permit(:email, :provider, :uid, :oauth_token, :nickname, :gender, :birthyear, :thumbimg, :thumbtype, :device_token, :device_type, :actualname, :phonenumber)
+      params.require(resource_name).permit(:email, :provider, :uid, :oauth_token, :nickname, :gender, :birthyear, :thumbimg, :thumbtype, :device_token, :device_type, :phonenumber)
     end
   end
 end

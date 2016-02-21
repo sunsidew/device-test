@@ -20,7 +20,6 @@ module DeviseIosRails
         where(attributes.slice(:uid, :provider)).first_or_create do |user|
           user.email = attributes[:email]
           user.phonenumber = attributes[:phonenumber]
-          user.actualname = attributes[:actualname]
           user.nickname = attributes[:nickname]
           user.gender = attributes[:gender]
           user.birthyear = attributes[:birthyear]

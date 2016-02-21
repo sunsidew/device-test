@@ -8,10 +8,18 @@ module DeviseIosRails
 
     def call!
       return if current_user.nil?
+      puts "call"
+      puts current_user.to_yaml
+      puts "-"
+      puts snake_case_params
       current_user.password = snake_case_params[:password]
       current_user.password_confirmation = snake_case_params[:password_confirmation]
-      current_user.save
-      current_user
+      if current_user.password == current.password_confirmation
+        current_user.save
+        current_user
+      else
+        return
+      end
     end
 
     private
