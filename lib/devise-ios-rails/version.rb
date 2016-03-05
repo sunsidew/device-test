@@ -1,3 +1,3 @@
 module DeviseIosRails
-  VERSION = "1.1.3"
+  VERSION = "1.0.1"
 end
