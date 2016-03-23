@@ -29,7 +29,8 @@ module DeviseIosRails
           user.phonenumber = attributes[:phonenumber]
           user.device_type = attributes[:device_type]
           user.device_token = attributes[:device_token]
-          user.profile_img = attributes[:profile_img]
+          user.thumbimg = attributes[:thumbimg]
+          user.thumbtype = attributes[:thumbtype]
         end
       end
     end
