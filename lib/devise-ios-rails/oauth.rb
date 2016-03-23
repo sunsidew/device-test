@@ -31,6 +31,9 @@ module DeviseIosRails
           user.device_token = attributes[:device_token]
           user.thumbimg = attributes[:thumbimg]
           user.thumbtype = attributes[:thumbtype]
+
+          user.birthyear = attributes[:birthyear]
+          user.gender = attributes[:gender]
         end
       end
     end

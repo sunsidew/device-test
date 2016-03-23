@@ -37,7 +37,7 @@ module DeviseIosRails
     private
 
     def resource_params
-      params.require(resource_name).permit(:email, :provider, :uid, :oauth_token, :nickname, :thumbimg, :thumbtype, :device_type, :device_token, :phonenumber)
+      params.require(resource_name).permit(:email, :provider, :uid, :oauth_token, :nickname, :thumbimg, :thumbtype, :device_type, :device_token, :phonenumber, :gender, :birthyear)
     end
   end
 end
