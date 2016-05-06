@@ -12,6 +12,11 @@ module DeviseIosRails
         
         before_check_facebook_token(record)
         record = resource_class.from_oauth(resource_params) if record.errors.blank?
+        
+        if record.oauth_token != resource_params[:oauth_token]
+          record.update(oauth_token: resource_params[:oauth_token])
+        end
+
         respond_with record
       else
         record = User.new
