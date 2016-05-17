@@ -12,7 +12,7 @@ module DeviseIosRails
       ).call!
 
       session[:current_user] = nil
-      respond_with user, location: after_resetting_password_path_for(user)
+      respond_with user, location: "/msg"#after_resetting_password_path_for(user)
       
       # respond_to do |format|
       #   format.html {
