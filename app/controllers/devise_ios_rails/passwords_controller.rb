@@ -45,8 +45,7 @@ module DeviseIosRails
     end
 
     def after_resetting_password_path_for(resource_name)
-      #return your path
-      "/msg"
+      "/update_password"
     end
   end
 end
