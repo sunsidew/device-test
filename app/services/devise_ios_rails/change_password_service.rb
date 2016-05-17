@@ -8,10 +8,6 @@ module DeviseIosRails
 
     def call!
       return if current_user.nil?
-      puts "call"
-      puts current_user.to_yaml
-      puts "-"
-      puts snake_case_params
       current_user.password = snake_case_params[:password]
       current_user.password_confirmation = snake_case_params[:password_confirmation]
       if current_user.password == current_user.password_confirmation
@@ -36,11 +32,9 @@ module DeviseIosRails
     def cryptN(target, n)
       tempSave = Digest::SHA256.hexdigest "bookmSaltkey"
       tempSave += target.to_s
-      puts tempSave
 
       n.times do
         tempSave = Digest::SHA256.hexdigest tempSave
-        puts tempSave
       end
       
       return tempSave
