@@ -12,7 +12,7 @@ module DeviseIosRails
       ).call!
 
       session[:current_user] = nil
-      redirect_to "/msg", notice: "이메일을 확인해주세요." and return
+      redirect_to "/msg" and return
       # respond_to do |format|
       #   format.html {
       #     super# and return if authenticate_entity_from_token!(entity).nil?
