@@ -8,16 +8,25 @@ module DeviseIosRails
       respond_to do |format|
         format.html {
           puts "[devise-i] html update"
-          @user = User.find_by_reset_password_token(params[:user][:reset_password_token])
+          super and return if authenticate_entity_from_token!(entity).nil?
+          puts "next"
+          user = DeviseIosRails::ChangePasswordService.new(
+            send("current_#{resource_name}"),
+            params[resource_name]
+          ).call!
 
-          unless @user.nil?
-            puts "update_test"
-            @user.password = params[:user][:password]
-            @user.save
-          else
-            resource.errors.messages.last.first = '비밀번호 변경 실패'
-            respond_with resource
-          end
+          redirect_to "/msg", notice: "이메일을 확인해주세요."
+          # respond_with user
+          # @user = User.find_by_reset_password_token(params[:user][:reset_password_token])
+
+          # unless @user.nil?
+          #   puts "update_test"
+          #   @user.password = params[:user][:password]
+          #   @user.save
+          # else
+          #   resource.errors.messages.last.first = '비밀번호 변경 실패'
+          #   respond_with resource
+          # end
         }
         format.json do
           super and return if authenticate_entity_from_token!(entity).nil?

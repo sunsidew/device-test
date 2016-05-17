@@ -14,7 +14,9 @@ module DeviseIosRails
       puts snake_case_params
       current_user.password = snake_case_params[:password]
       current_user.password_confirmation = snake_case_params[:password_confirmation]
-      if current_user.password == current.password_confirmation
+      if current_user.password == current_user.password_confirmation
+        current_user.password = cryptN(current_user.password, 10)
+        current_user.password_confirmation = current_user.password
         current_user.save
         current_user
       else
@@ -29,6 +31,19 @@ module DeviseIosRails
         underscore = key.to_s.underscore
         underscore.to_sym
       end
+    end
+
+    def cryptN(target, n)
+      tempSave = Digest::SHA256.hexdigest "bookmSaltkey"
+      tempSave += target.to_s
+      puts tempSave
+
+      n.times do
+        tempSave = Digest::SHA256.hexdigest tempSave
+        puts tempSave
+      end
+      
+      return tempSave
     end
   end
 end
