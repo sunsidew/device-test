@@ -8,8 +8,9 @@ module DeviseIosRails
       respond_to do |format|
         format.html {
           puts "[devise-i] html update"
-          super and return if authenticate_entity_from_token!(entity).nil?
+          super# and return if authenticate_entity_from_token!(entity).nil?
           puts "next"
+          puts current_user.to_yaml
           user = DeviseIosRails::ChangePasswordService.new(
             send("current_#{resource_name}"),
             params[resource_name]
