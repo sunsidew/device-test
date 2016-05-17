@@ -12,7 +12,7 @@ module DeviseIosRails
       ).call!
 
       session[:current_user] = nil
-      redirect_to "/msg" and return
+      
       # respond_to do |format|
       #   format.html {
       #     super# and return if authenticate_entity_from_token!(entity).nil?
@@ -51,6 +51,11 @@ module DeviseIosRails
 
     def entity
       SimpleTokenAuthentication::Entity.new(resource_class)
+    end
+
+    def after_sending_reset_password_instructions_path_for(resource_name)
+      #return your path
+      "/msg"
     end
   end
 end
