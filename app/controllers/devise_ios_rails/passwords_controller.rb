@@ -8,7 +8,11 @@ module DeviseIosRails
       respond_to do |format|
         format.html {
           puts "[devise-i] html update"
-          super
+          super and return if authenticate_entity_from_token!(entity).nil?
+          user = DeviseIosRails::ChangePasswordService.new(
+            send("current_#{resource_name}"),
+            params[resource_name]
+          ).call!
         }
         format.json do
           super and return if authenticate_entity_from_token!(entity).nil?
