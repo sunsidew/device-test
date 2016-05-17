@@ -6,7 +6,10 @@ module DeviseIosRails
 
     def update
       respond_to do |format|
-        format.html { super }
+        format.html {
+          puts "[devise-i] html update"
+          super
+        }
         format.json do
           super and return if authenticate_entity_from_token!(entity).nil?
           user = DeviseIosRails::ChangePasswordService.new(
