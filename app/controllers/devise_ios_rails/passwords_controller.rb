@@ -14,7 +14,6 @@ module DeviseIosRails
           ).call!
 
           session[:current_user] = nil
-          respond_with user, location: "/msg"
           # respond_with user
           # @user = User.find_by_reset_password_token(params[:user][:reset_password_token])
 
@@ -45,9 +44,9 @@ module DeviseIosRails
       SimpleTokenAuthentication::Entity.new(resource_class)
     end
 
-    # def after_sending_reset_password_instructions_path_for(resource_name)
-    #   #return your path
-    #   "/msg"
-    # end
+    def after_resetting_password_path_for(resource_name)
+      #return your path
+      "/msg"
+    end
   end
 end
