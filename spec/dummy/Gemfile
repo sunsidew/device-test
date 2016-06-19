@@ -24,7 +24,7 @@ gem 'devise-ios-rails', github: 'netguru/devise-ios-rails'
 gem 'activeadmin', github: 'activeadmin'
 gem 'swagger-docs'
 
-group :development do
+group :production do
   gem 'better_errors'
   gem 'binding_of_caller', platforms: [:mri_21]
   gem 'capistrano', '3.2.1'
@@ -37,11 +37,11 @@ group :development do
   gem 'guard-rspec'
   gem 'quiet_assets'
   gem 'gemsurance'
-  gem 'letter_opener'
+  # gem 'letter_opener'
 end
 
-group :development, :test do
-  gem 'sqlite3'
+group :production, :test do
+  # gem 'sqlite3'
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-rescue'
